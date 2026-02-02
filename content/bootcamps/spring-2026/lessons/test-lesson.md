@@ -8,6 +8,7 @@ fcc_lesson_url = ""
 next_lesson = ""
 prev_lesson = ""
 bootcamp = ""
+type = "lessons"
 +++
 
 ## Main video 
