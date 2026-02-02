@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  <h2>{{ .Params.main_recording_url }}</h2>
-{{ end }}
+<h1>{{ .Title }}</h1>
+<h2>Recording</h2>
+{{ partial "youtube.html" (dict "id" .Params.youtube_id) }}
+{{ .Content }} {{ end }}

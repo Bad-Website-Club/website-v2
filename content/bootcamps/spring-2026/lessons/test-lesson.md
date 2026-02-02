@@ -2,7 +2,7 @@
 date = '2026-02-02T12:28:57+03:00'
 draft = true
 title = 'Test Lesson'
-main_recording_url = ""
+youtube_id = "t9glxmVL4jg"
 alternative_recording_urls = []
 fcc_lesson_url = ""
 next_lesson = ""
@@ -11,7 +11,6 @@ bootcamp = ""
 type = "lessons"
 +++
 
-## Main video 
 
 ## Alternative video links
 
