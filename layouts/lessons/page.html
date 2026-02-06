@@ -1,14 +1,19 @@
 {{ define "main" }}
 <h1>{{ .Title }}</h1>
+<p>{{ .Date | time.Format ":date_medium" }} {{ .Date | time.Format
+    ":time_medium" }}
+  <a href="{{ .Params.etz_url }}"
+    >(Check your timezone)</a
+  >
+</p>
 {{ range (.GetTerms "lesson_type") }}
 <p>{{ .Name }}</p>
-{{ end }}
-{{ range (.GetTerms "instructors") }}
+{{ end }} {{ range (.GetTerms "instructors") }}
+<p>{{ .Name }}</p>
+{{ end }} {{ range (.GetTerms "unit") }}
 <p>{{ .Name }}</p>
 {{ end }}
-{{ range (.GetTerms "unit") }}
-<p>{{ .Name }}</p>
-{{ end }}
+<h2><a href="{{ .Params.fcc_lesson_url }}">FreeCodeCamp lesson URL</a></h2>
 <h2>Recording</h2>
-{{ partial "youtube.html" (dict "id" .Params.youtube_id) }}
-{{ .Content }} {{ end }}
+{{ partial "youtube.html" (dict "id" .Params.youtube_id) }} {{ .Content }} {{
+end }}
