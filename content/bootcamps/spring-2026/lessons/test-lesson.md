@@ -10,6 +10,7 @@ prev_lesson = ""
 bootcamp = ""
 type = "lessons"
 lesson_type = ["workshop"]
+instructors = ["Jess", "Carmen", "Eda"]
 +++
 
 
