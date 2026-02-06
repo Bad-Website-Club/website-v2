@@ -1,0 +1,19 @@
+{{ define "main" }}
+<h1>{{ .Name }}</h1>
+{{ $today := now }}
+
+{{ $lessons := where .CurrentSection.Pages "Type" "lessons" }}
+{{ $pastLessons := where $lessons "Date" "<" $today }}
+{{ $upcomingLessons := where $lessons "Date" ">" $today }}
+<h2>Upcoming Lessons</h2>
+{{ range $upcomingLessons.ByDate.Reverse }}
+  <a href="{{ .RelPermalink }}">{{ .Title }}</a><br>
+{{ end }}
+<h2>Past Lessons</h2>
+{{ range $pastLessons.ByDate.Reverse }}
+  <a href="{{ .RelPermalink }}">{{ .Title }}</a><br>
+{{ end }}
+<p>
+    <a href="{{ .Params.fcc_url }}">{{ .Params.fcc_name }} on FreeCodeCamp</a>
+</p>
+{{ end }}
