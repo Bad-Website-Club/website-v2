@@ -1,5 +1,8 @@
 {{ define "main" }}
 <h1>{{ .Title }}</h1>
+{{ range (.GetTerms "lesson_type") }}
+<p>{{ .Name }}</p>
+{{ end }}
 <h2>Recording</h2>
 {{ partial "youtube.html" (dict "id" .Params.youtube_id) }}
 {{ .Content }} {{ end }}

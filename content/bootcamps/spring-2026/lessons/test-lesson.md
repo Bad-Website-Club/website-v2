@@ -9,6 +9,7 @@ next_lesson = ""
 prev_lesson = ""
 bootcamp = ""
 type = "lessons"
+lesson_type = ["workshop"]
 +++
 
 
