@@ -22,4 +22,7 @@
 {{ with .NextInSection }}
   <a href="{{ .RelPermalink }}">Next: {{ .Title }}</a>
 {{ end }}
+{{ with .CurrentSection }}
+  <p>Part of the <a href="{{ .RelPermalink }}">{{ .Title }}</a> bootcamp</p>
+{{ end }}
 {{ end }}
