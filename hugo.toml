@@ -15,6 +15,7 @@ enableRobotsTXT = true
 [taxonomies]
   lesson_type = 'lesson_type'
   instructor = 'instructors'
+  unit = 'unit'
 
 [permalinks]
   blog = "/:slug/"

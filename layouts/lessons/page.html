@@ -6,6 +6,9 @@
 {{ range (.GetTerms "instructors") }}
 <p>{{ .Name }}</p>
 {{ end }}
+{{ range (.GetTerms "unit") }}
+<p>{{ .Name }}</p>
+{{ end }}
 <h2>Recording</h2>
 {{ partial "youtube.html" (dict "id" .Params.youtube_id) }}
 {{ .Content }} {{ end }}
