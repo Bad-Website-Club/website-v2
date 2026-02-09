@@ -15,7 +15,20 @@
 {{ end }}
 <h2><a href="{{ .Params.fcc_lesson_url }}">FreeCodeCamp lesson URL</a></h2>
 <h2>Recording</h2>
-{{ partial "youtube.html" (dict "id" .Params.youtube_id) }} {{ .Content }}
+{{ if ne .Params.youtube_id "" }}
+  {{ partial "youtube.html" (dict "id" .Params.youtube_id) }} {{ .Content }}
+{{ else }}
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/live_stream?channel=@BadWebsiteClub" allowfullscreen="" allow="
+      accelerometer;
+      autoplay;
+      clipboard-write;
+      encrypted-media;
+      gyroscope;
+      picture-in-picture;
+    " loading="lazy" title="YouTube video player"></iframe>
+</div>
+{{ end }}
 {{ with .PrevInSection }}
   <a href="{{ .RelPermalink }}">Prev: {{ .Title }}</a>
 {{ end }}
