@@ -8,8 +8,9 @@ def main():
     parser.add_argument('bootcamp', help='The bootcamp name', type=str)
     args = parser.parse_args()
     csv = pandas.read_csv(args.file)
-    first = csv.iloc[0].to_dict()
-    generate_lesson_from_row(first, args.bootcamp)
+    for _, row in csv.iterrows():
+        generate_lesson_from_row(row, args.bootcamp)
+
 
 def generate_lesson_from_row(row, bootcamp):
     filename = f'./content/bootcamps/{bootcamp}/lessons/{row["Lesson number"]}.md'
