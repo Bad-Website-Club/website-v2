@@ -16,7 +16,7 @@ def generate_lesson_from_row(row, bootcamp):
     filename = f'./content/bootcamps/{bootcamp}/lessons/{row["Lesson number"]}.md'
     with open(filename, 'w+', encoding='utf-8') as f:
         f.write('+++\n')
-        f.write(f'date = \'{datetime.now().astimezone()}\'\n')
+        f.write(f'date = \'{datetime.strptime(row["Date"], "%Y/%m/%d").replace(hour=19, minute=0, second=0).astimezone().isoformat(timespec="seconds")}\'\n')
         f.write(f'etz_url = \'\'\n')
         f.write(f'draft = true\n')
         f.write(f'title = \'{row["Name"]}\'\n')

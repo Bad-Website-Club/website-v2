@@ -8,6 +8,7 @@ title = "Bad Website Club"
 author = "Carmen, Eda, Jess"
 copyright = "Copyright © 2026, Bad Website Club."
 languageCode = "en-US"
+buildFuture = true
 
 # Generate a nice robots.txt for SEO
 enableRobotsTXT = true

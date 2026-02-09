@@ -6,7 +6,7 @@
 {{ $pastLessons := where $lessons "Date" "<" $today }}
 {{ $upcomingLessons := where $lessons "Date" ">" $today }}
 <h2>Upcoming Lessons</h2>
-{{ range $upcomingLessons.ByDate.Reverse }}
+{{ range $upcomingLessons.ByDate }}
   <a href="{{ .RelPermalink }}">{{ .Title }}</a><br>
 {{ end }}
 <h2>Past Lessons</h2>
