@@ -10,7 +10,7 @@ next_lesson = ""
 prev_lesson = ""
 bootcamp = ""
 type = "lessons"
-lesson_type = ["workshop"]
+lesson_type = ["quiz"]
 instructors = ["Jess", "Carmen", "Eda"]
 unit = ['HTML']
 +++

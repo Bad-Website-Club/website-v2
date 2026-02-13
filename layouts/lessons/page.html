@@ -1,14 +1,17 @@
 {{ define "main" }}
 <h1>{{ .Title }}</h1>
+{{ range (.GetTerms "lesson_type") }}
+<div class="metadata-container">
 <p>{{ .Date | time.Format ":date_medium" }} {{ .Date | time.Format
     ":time_medium" }}
   <a href="{{ .Params.etz_url }}"
     >(Check your timezone)</a
   >
 </p>
-{{ range (.GetTerms "lesson_type") }}
-<p>{{ .Name }}</p>
-{{ end }} {{ range (.GetTerms "instructors") }}
+<span class="lesson-type {{ .Name }}">{{ .Name }}</span>
+</div>
+{{ end }}
+{{ range (.GetTerms "instructors") }}
 <p>{{ .Name }}</p>
 {{ end }} {{ range (.GetTerms "unit") }}
 <p>{{ .Name }}</p>

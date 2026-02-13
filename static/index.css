@@ -1,3 +1,21 @@
 summary {
   text-decoration: underline;
 }
+
+.metadata-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .lesson-type {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+
+    &.workshop {
+      background-color: aquamarine;
+    }
+    &.quiz {
+      background-color: red;
+    }
+  }
+}
