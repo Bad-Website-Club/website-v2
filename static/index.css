@@ -19,6 +19,20 @@ summary:hover {
   cursor: pointer;
 }
 
+.bottom-navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.prev::before {
+  content: '← '
+}
+
+.next::after {
+  content: ' →'
+}
+
 .faq {
   & details {
     margin-top: 1rem;
