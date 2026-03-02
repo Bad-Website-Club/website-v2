@@ -11,9 +11,15 @@
 <span class="lesson-type {{ .Name }}">{{ .Name }}</span>
 </div>
 {{ end }}
-{{ range (.GetTerms "instructors") }}
-<p>{{ .Name }}</p>
-{{ end }} {{ range (.GetTerms "unit") }}
+<p>{{ $instructors := .GetTerms "instructors" }}
+{{ range $index, $instructor := $instructors }}
+  {{ if (eq $index (sub (len $instructors) 1)) }}
+    <span>and {{ $instructor.Name }}</span>
+  {{ else }}
+    <span>{{ $instructor.Name }}, </span>
+  {{ end }}
+{{ end }}</p>
+{{ range (.GetTerms "unit") }}
 <p>{{ .Name }}</p>
 {{ end }}
 <h2><a href="{{ .Params.fcc_lesson_url }}">FreeCodeCamp lesson URL</a></h2>
