@@ -6,6 +6,7 @@ summary {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 
   .lesson-type {
     padding: 0.5rem 1rem;
