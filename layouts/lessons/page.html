@@ -11,9 +11,15 @@
 <span class="lesson-type {{ .Name }}">{{ .Name }}</span>
 </div>
 {{ end }}
-{{ range (.GetTerms "instructors") }}
-<p>{{ .Name }}</p>
-{{ end }} {{ range (.GetTerms "unit") }}
+<p>{{ $instructors := .GetTerms "instructors" }}
+{{ range $index, $instructor := $instructors }}
+  {{ if (eq $index (sub (len $instructors) 1)) }}
+    <span>and {{ $instructor.Name }}</span>
+  {{ else }}
+    <span>{{ $instructor.Name }}, </span>
+  {{ end }}
+{{ end }}</p>
+{{ range (.GetTerms "unit") }}
 <p>{{ .Name }}</p>
 {{ end }}
 <h2><a href="{{ .Params.fcc_lesson_url }}">FreeCodeCamp lesson URL</a></h2>
@@ -32,12 +38,14 @@
     " loading="lazy" title="YouTube video player"></iframe>
 </div>
 {{ end }}
+<div class="bottom-navigation">
 {{ with .PrevInSection }}
-  <a href="{{ .RelPermalink }}">Prev: {{ .Title }}</a>
+  <a href="{{ .RelPermalink }}" class="prev">Prev: {{ .Title }}</a>
 {{ end }}
 {{ with .NextInSection }}
-  <a href="{{ .RelPermalink }}">Next: {{ .Title }}</a>
+  <a href="{{ .RelPermalink }}" class="next">Next: {{ .Title }}</a>
 {{ end }}
+</div>
 {{ with .CurrentSection }}
   <p>Part of the <a href="{{ .RelPermalink }}">{{ .Title }}</a> bootcamp</p>
 {{ end }}

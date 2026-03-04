@@ -1,21 +1,102 @@
+:root {
+  --red: #ea3c65;
+  --pink: #ffb7d3;
+  --light-purple: #e2d4f4;
+  --purple: #9159d3;
+  --light-blue: #ccdefc;
+  --blue: #3984f2;
+  --light-green: #d5f5d9;
+  --green: #64d970;
+  --light-orange: #ffe5d3;
+  --orange: #ff9e5a;
+}
+
 summary {
   text-decoration: underline;
+}
+
+summary:hover {
+  cursor: pointer;
+}
+
+.bottom-navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.prev::before {
+  content: '← '
+}
+
+.next::after {
+  content: ' →'
+}
+
+.faq {
+  & details {
+    margin-top: 1rem;
+  }
 }
 
 .metadata-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 
   .lesson-type {
     padding: 0.5rem 1rem;
     border-radius: 1rem;
 
     &.workshop {
-      background-color: aquamarine;
+      background-color: var(--light-green);
     }
     &.quiz {
-      background-color: red;
+      background-color: var(--red);
+      color: var(--background-color); /* invert for light mode */
+    }
+    &.theory {
+      background-color: var(--light-purple);
+    }
+    &.review {
+      background-color: var(--pink);
+    }
+    &.lab {
+      background-color: var(--light-orange);
+    }
+    &.certification-project {
+      background-color: var(--light-blue);
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #222831;
+  }
+  .metadata-container {
+    .lesson-type {
+      &.workshop {
+        background-color: var(--green);
+        color: var(--background-color);
+      }
+      &.quiz {
+        color: var(--text-color);
+      }
+      &.theory {
+        background-color: var(--purple);
+      }
+      &.review {
+        color: var(--background-color);
+      }
+      &.lab {
+        background-color: var(--orange);
+        color: var(--background-color);
+      }
+      &.certification-project {
+        color: var(--background-color);
+      }
     }
   }
 }
