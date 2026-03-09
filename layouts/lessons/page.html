@@ -40,7 +40,7 @@
 {{ range (.GetTerms "unit") }}
 <p>{{ .Name }}</p>
 {{ end }}
-<h2><a href="{{ .Params.fcc_lesson_url }}">FreeCodeCamp lesson URL</a></h2>
+<a href="{{ .Params.fcc_lesson_url }}" class="fcc-lesson-link">FreeCodeCamp lesson URL</a>
 <div class="bottom-navigation">
 {{ with .PrevInSection }}
   <a href="{{ .RelPermalink }}" class="prev">Prev: {{ .Title }}</a>

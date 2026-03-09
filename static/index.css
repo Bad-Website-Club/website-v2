@@ -94,6 +94,14 @@ summary:hover {
   }
 }
 
+.fcc-lesson-link {
+  border: 2px solid var(--text-color);
+  box-shadow: 4px 4px 0 0 var(--text-color);
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  margin: 1rem 0;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background-color: #222831;
