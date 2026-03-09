@@ -1,5 +1,19 @@
 {{ define "main" }}
 <h1>{{ .Title }}</h1>
+{{ if ne .Params.youtube_id "" }}
+  {{ partial "youtube.html" (dict "id" .Params.youtube_id) }} {{ .Content }}
+{{ else }}
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/live_stream?channel=@BadWebsiteClub" allowfullscreen="" allow="
+      accelerometer;
+      autoplay;
+      clipboard-write;
+      encrypted-media;
+      gyroscope;
+      picture-in-picture;
+    " loading="lazy" title="YouTube video player"></iframe>
+</div>
+{{ end }}
 {{ range (.GetTerms "lesson_type") }}
 <div class="metadata-container">
 <p>{{ .Date | time.Format ":date_medium" }} {{ .Date | time.Format
@@ -23,21 +37,6 @@
 <p>{{ .Name }}</p>
 {{ end }}
 <h2><a href="{{ .Params.fcc_lesson_url }}">FreeCodeCamp lesson URL</a></h2>
-<h2>Recording</h2>
-{{ if ne .Params.youtube_id "" }}
-  {{ partial "youtube.html" (dict "id" .Params.youtube_id) }} {{ .Content }}
-{{ else }}
-<div class="video-container">
-  <iframe src="https://www.youtube.com/embed/live_stream?channel=@BadWebsiteClub" allowfullscreen="" allow="
-      accelerometer;
-      autoplay;
-      clipboard-write;
-      encrypted-media;
-      gyroscope;
-      picture-in-picture;
-    " loading="lazy" title="YouTube video player"></iframe>
-</div>
-{{ end }}
 <div class="bottom-navigation">
 {{ with .PrevInSection }}
   <a href="{{ .RelPermalink }}" class="prev">Prev: {{ .Title }}</a>
