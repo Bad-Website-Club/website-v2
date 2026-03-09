@@ -45,11 +45,15 @@ summary:hover {
 }
 
 .prev::before {
-  content: '← '
+  content: '← ';
 }
 
 .next::after {
-  content: ' →'
+  content: ' →';
+}
+
+.next {
+  margin-left: auto;
 }
 
 .faq {
