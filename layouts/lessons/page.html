@@ -1,4 +1,8 @@
 {{ define "main" }}
+<nav class="breadcrumb">
+  <a href="{{ .CurrentSection.RelPermalink }}" class="crumb">{{ .CurrentSection.Title }}</a>
+  <a href="{{ .RelPermalink }}" class="crumb current">{{ .Title }}</a>
+</nav>
 <h1>{{ .Title }}</h1>
 {{ if ne .Params.youtube_id "" }}
   {{ partial "youtube.html" (dict "id" .Params.youtube_id) }} {{ .Content }}
@@ -45,7 +49,4 @@
   <a href="{{ .RelPermalink }}" class="next">Next: {{ .Title }}</a>
 {{ end }}
 </div>
-{{ with .CurrentSection }}
-  <p>Part of the <a href="{{ .RelPermalink }}">{{ .Title }}</a> bootcamp</p>
-{{ end }}
 {{ end }}
