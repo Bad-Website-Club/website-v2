@@ -29,7 +29,7 @@
 <span class="lesson-type {{ .Name }}">{{ .Name }}</span>
 </div>
 {{ end }}
-<p>{{ $instructors := .GetTerms "instructors" }}
+<p>Instructors: {{ $instructors := .GetTerms "instructors" }}
 {{ range $index, $instructor := $instructors }}
   {{ if (eq $index (sub (len $instructors) 1)) }}
     <span>and {{ $instructor.Name }}</span>
