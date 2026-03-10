@@ -3,6 +3,8 @@ Learning programming skills can be lonely, and it often feels like there's so mu
 Carmen, Eda and Jess have taught over 35,000 learners via our free programming bootcamps* and are really excited to be launching a new social learning project where we'll learn just enough web skills to be dangerous alongside all of you.
 
 {{< rawhtml >}}
+<div class="newsletter">
+<h2>Subscribe to Our Newsletter</h2>
 <form
   action="https://buttondown.com/api/emails/embed-subscribe/bad-website-club"
   method="post"
@@ -10,13 +12,13 @@ Carmen, Eda and Jess have taught over 35,000 learners via our free programming b
   onsubmit="window.open('https://buttondown.com/bad-website-club', 'popupwindow')"
   class="embeddable-buttondown-form"
 >
-  <label for="bd-email">Enter your email</label>
-  <input type="email" name="email" id="bd-email" />
+  <label for="bd-email">Enter your email:</label>
+  <input type="email" name="email" id="bd-email" placeholder="name@example.com" />
 
   <input type="submit" value="Subscribe" />
   <p>
     <a href="https://buttondown.com/refer/bad-website-club" target="_blank">Powered by Buttondown.</a>
   </p>
 </form>
+</div>
 {{< /rawhtml >}}
-
