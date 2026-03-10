@@ -218,3 +218,11 @@ summary:hover {
     }
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .decorations {
+    & h2 {
+      animation: none;
+    }
+  }
+}
