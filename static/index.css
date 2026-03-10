@@ -11,6 +11,25 @@
   --orange: #ff9e5a;
 }
 
+.crumb {
+  padding: .5rem 1.5rem;
+  background: var(--light-purple);
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%, 14px 50%);
+  color: var(--text-color);
+  margin-right: -15px;
+
+  &:first-child {
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+  }
+
+  &.current {
+    background: var(--light-green);
+  }
+  &:hover {
+    filter: brightness(1.02);
+  }
+}
+
 summary {
   text-decoration: underline;
 }
@@ -26,11 +45,15 @@ summary:hover {
 }
 
 .prev::before {
-  content: '← '
+  content: '← ';
 }
 
 .next::after {
-  content: ' →'
+  content: ' →';
+}
+
+.next {
+  margin-left: auto;
 }
 
 .faq {
@@ -71,6 +94,14 @@ summary:hover {
   }
 }
 
+.fcc-lesson-link {
+  border: 2px solid var(--text-color);
+  box-shadow: 4px 4px 0 0 var(--text-color);
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  margin: 1rem 0;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background-color: #222831;
@@ -98,5 +129,8 @@ summary:hover {
         color: var(--background-color);
       }
     }
+  }
+  .crumb {
+    color: var(--background-color);
   }
 }

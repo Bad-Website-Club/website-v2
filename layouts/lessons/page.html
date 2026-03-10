@@ -1,29 +1,9 @@
 {{ define "main" }}
+<nav class="breadcrumb">
+  <a href="{{ .CurrentSection.RelPermalink }}" class="crumb">{{ .CurrentSection.Title }}</a>
+  <a href="{{ .RelPermalink }}" class="crumb current">{{ .Title }}</a>
+</nav>
 <h1>{{ .Title }}</h1>
-{{ range (.GetTerms "lesson_type") }}
-<div class="metadata-container">
-<p>{{ .Date | time.Format ":date_medium" }} {{ .Date | time.Format
-    ":time_medium" }}
-  <a href="{{ .Params.etz_url }}"
-    >(Check your timezone)</a
-  >
-</p>
-<span class="lesson-type {{ .Name }}">{{ .Name }}</span>
-</div>
-{{ end }}
-<p>{{ $instructors := .GetTerms "instructors" }}
-{{ range $index, $instructor := $instructors }}
-  {{ if (eq $index (sub (len $instructors) 1)) }}
-    <span>and {{ $instructor.Name }}</span>
-  {{ else }}
-    <span>{{ $instructor.Name }}, </span>
-  {{ end }}
-{{ end }}</p>
-{{ range (.GetTerms "unit") }}
-<p>{{ .Name }}</p>
-{{ end }}
-<h2><a href="{{ .Params.fcc_lesson_url }}">FreeCodeCamp lesson URL</a></h2>
-<h2>Recording</h2>
 {{ if ne .Params.youtube_id "" }}
   {{ partial "youtube.html" (dict "id" .Params.youtube_id) }} {{ .Content }}
 {{ else }}
@@ -38,6 +18,29 @@
     " loading="lazy" title="YouTube video player"></iframe>
 </div>
 {{ end }}
+{{ range (.GetTerms "lesson_type") }}
+<div class="metadata-container">
+<p>{{ .Date | time.Format ":date_medium" }} {{ .Date | time.Format
+    ":time_medium" }}
+  <a href="{{ .Params.etz_url }}"
+    >(Check your timezone)</a
+  >
+</p>
+<span class="lesson-type {{ .Name }}">{{ .Name }}</span>
+</div>
+{{ end }}
+<p>Instructors: {{ $instructors := .GetTerms "instructors" }}
+{{ range $index, $instructor := $instructors }}
+  {{ if (eq $index (sub (len $instructors) 1)) }}
+    <span>and {{ $instructor.Name }}</span>
+  {{ else }}
+    <span>{{ $instructor.Name }}, </span>
+  {{ end }}
+{{ end }}</p>
+{{ range (.GetTerms "unit") }}
+<p>{{ .Name }}</p>
+{{ end }}
+<a href="{{ .Params.fcc_lesson_url }}" class="fcc-lesson-link">FreeCodeCamp lesson URL</a>
 <div class="bottom-navigation">
 {{ with .PrevInSection }}
   <a href="{{ .RelPermalink }}" class="prev">Prev: {{ .Title }}</a>
@@ -46,7 +49,4 @@
   <a href="{{ .RelPermalink }}" class="next">Next: {{ .Title }}</a>
 {{ end }}
 </div>
-{{ with .CurrentSection }}
-  <p>Part of the <a href="{{ .RelPermalink }}">{{ .Title }}</a> bootcamp</p>
-{{ end }}
 {{ end }}
