@@ -1,14 +1,20 @@
 :root {
-  --red: #ea3c65;
-  --pink: #ffb7d3;
+  --light-red: #f7b3c3;
+  --dark-red: #cf0b39;
+  --light-pink: #ffd9e8;
+  --dark-pink: #9c677d;
   --light-purple: #e2d4f4;
   --purple: #9159d3;
+  --dark-purple: #6a2db5;
   --light-blue: #ccdefc;
   --blue: #3984f2;
+  --dark-blue: #075cd8;
   --light-green: #d5f5d9;
   --green: #64d970;
+  --dark-green: #2e9439;
   --light-orange: #ffe5d3;
   --orange: #ff9e5a;
+  --dark-orange: #cd6e2b;
 }
 
 .crumb {
@@ -70,20 +76,20 @@ summary:hover {
 
   .lesson-type {
     padding: 0.5rem 1rem;
-    border-radius: 1rem;
+    border: 2px solid var(--text-color);
+    box-shadow: 4px 4px 0 0 var(--text-color);
 
     &.workshop {
       background-color: var(--light-green);
     }
     &.quiz {
-      background-color: var(--red);
-      color: var(--background-color); /* invert for light mode */
+      background-color: var(--light-red);
     }
     &.theory {
       background-color: var(--light-purple);
     }
     &.review {
-      background-color: var(--pink);
+      background-color: var(--light-pink);
     }
     &.lab {
       background-color: var(--light-orange);
@@ -109,24 +115,22 @@ summary:hover {
   .metadata-container {
     .lesson-type {
       &.workshop {
-        background-color: var(--green);
-        color: var(--background-color);
+        background-color: var(--dark-green);
       }
       &.quiz {
-        color: var(--text-color);
+        background-color: var(--dark-red);
       }
       &.theory {
-        background-color: var(--purple);
+        background-color: var(--dark-purple);
       }
       &.review {
-        color: var(--background-color);
+        background-color: var(--dark-pink);
       }
       &.lab {
-        background-color: var(--orange);
-        color: var(--background-color);
+        background-color: var(--dark-orange);
       }
       &.certification-project {
-        color: var(--background-color);
+        background-color: var(--dark-blue);
       }
     }
   }
