@@ -136,6 +136,17 @@ summary:hover {
 
   & img {
     width: 5rem;
+  }
+    &:hover {
+    text-decoration: none;
+
+    & h1::after {
+      width: 100%;
+      background-color: var(--text-color);
+    }
+  }
+}
+
 .upcoming-bootcamp {
   padding: 1rem;
   display: flex;
@@ -163,18 +174,14 @@ summary:hover {
 
   &:hover {
     text-decoration: none;
-
-    & h1::after {
-      width: 100%;
-      background-color: var(--text-color);
-    }
-  }
-}
-
     box-shadow: 4px 4px 0 0 var(--purple), var(--purple) 0 4px 8px, var(--purple) 0 7px 13px -3px;
     & svg {
       transform: translateX(20%);
       transition: 0.2s;
+    }
+    & h1::after {
+      width: 100%;
+      background-color: var(--text-color);
     }
   }
 }
@@ -217,6 +224,8 @@ summary:hover {
     position: relative;
     top: 1rem;
   }
+}
+
 .newsletter {
   background-color: var(--light-gray);
   padding: .5rem 2rem;
@@ -289,9 +298,6 @@ summary:hover {
   .crumb {
     color: var(--background-color);
   }
-  .decorations {
-    & h2 {
-      text-shadow: 1px 1px 1rem var(--text-color), 0 0 0.5rem var(--light-purple), 0 0 0.5rem var(--light-purple);
   .newsletter {
     background-color: var(--dark-gray);
     border-color: var(--dark-purple);
@@ -299,6 +305,11 @@ summary:hover {
     & [type="submit"] {
       background-color: var(--dark-purple);
       color: var(--text-color);
+    }
+  }
+  .decorations {
+    & h2 {
+      text-shadow: 1px 1px 1rem var(--text-color), 0 0 0.5rem var(--light-purple), 0 0 0.5rem var(--light-purple);
     }
   }
 }
