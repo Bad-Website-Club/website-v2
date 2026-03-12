@@ -5,12 +5,24 @@
 {{ $now := now }}
 {{ $upcoming := where $bootcamps "Params.start_date" ">" $now }}
 {{ $sorted := sort $upcoming "Params.start_date" "asc" }}
-<h2>Upcoming Bootcamp</h2>
+<section class="upcoming-bootcamp">
+<div class="decorations">
+  <img src="/decorations/skull.png" alt="Skull decoration" class="decoration skull">
+  <h2>Upcoming Bootcamp</h2>
+  <img src="/decorations/moon.png" alt="Moon decoration" class="decoration moon">
+</div>
 {{ with index $bootcamps 0 }}
-<a href="{{ .RelPermalink }}">
-   {{ .Title }}
+<a href="{{ .RelPermalink }}" class="upcoming-bootcamp-link">
+  <span>{{ .Title }}</span>
+  <svg width="24px" height="24px" stroke-width="2.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 6L15 12L9 18" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 </a>
 {{ end }}
+<div class="decorations">
+<img src="/decorations/candle.png" alt="Candle decoration" class="decoration candle">
+<img src="/decorations/ghost.png" alt="Ghost decoration" class="decoration ghost">
+<img src="/decorations/magic-glass.png" alt="Magic glass decoration" class="decoration magic-glass">
+</div>
+</section>
 
 <section class="faq">
   <h2>Frequently Asked Questions</h2>

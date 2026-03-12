@@ -110,6 +110,79 @@ summary:hover {
   margin: 1rem 0;
 }
 
+.upcoming-bootcamp {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.upcoming-bootcamp-link {
+  border: 2px solid var(--purple);
+  box-shadow: 4px 4px 0 0 var(--purple);
+  padding: 1rem;
+  display: inline-flex;
+  margin: 1rem 0;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  font-weight: bold;
+  color: var(--text-color);
+
+  & svg {
+    stroke: var(--text-color);
+  }
+
+  &:hover {
+    text-decoration: none;
+    box-shadow: 4px 4px 0 0 var(--purple), var(--purple) 0 4px 8px, var(--purple) 0 7px 13px -3px;
+    & svg {
+      transform: translateX(20%);
+      transition: 0.2s;
+    }
+  }
+}
+
+.decorations {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+
+  & h2 {
+    animation: flicker 2s infinite alternate;
+    color: var(--background-color);
+    text-shadow: 1px 1px 1rem var(--text-color), 0 0 0.5rem var(--purple), 0 0 0.5rem var(--purple);
+  }
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+     opacity: 1;
+  }
+  20%, 24%, 55% {
+     opacity: 0.3;
+  }
+}
+
+.decoration {
+  width: 3rem;
+  &.magic-glass {
+    rotate: 12deg;
+    align-self: end;
+  }
+  &.ghost {
+    width: 6rem;
+    position: relative;
+    top: 1.5rem;
+  }
+  &.crystal {
+    position: relative;
+    top: 1rem;
+  }
 .newsletter {
   background-color: var(--light-gray);
   padding: .5rem 2rem;
@@ -181,6 +254,9 @@ summary:hover {
   .crumb {
     color: var(--background-color);
   }
+  .decorations {
+    & h2 {
+      text-shadow: 1px 1px 1rem var(--text-color), 0 0 0.5rem var(--light-purple), 0 0 0.5rem var(--light-purple);
   .newsletter {
     background-color: var(--dark-gray);
     border-color: var(--dark-purple);
@@ -188,6 +264,14 @@ summary:hover {
     & [type="submit"] {
       background-color: var(--dark-purple);
       color: var(--text-color);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .decorations {
+    & h2 {
+      animation: none;
     }
   }
 }
