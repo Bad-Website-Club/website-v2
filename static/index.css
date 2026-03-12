@@ -15,6 +15,8 @@
   --light-orange: #ffe5d3;
   --orange: #ff9e5a;
   --dark-orange: #cd6e2b;
+  --light-gray: #f0f0f2;
+  --dark-gray: #32363E;
 }
 
 .crumb {
@@ -181,6 +183,46 @@ summary:hover {
     position: relative;
     top: 1rem;
   }
+.newsletter {
+  background-color: var(--light-gray);
+  padding: .5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  border: 3px solid var(--light-purple);
+  box-shadow: 4px 4px 0 0 var(--light-purple);
+  margin: 2rem 0;
+
+  & h2 {
+    align-self: center;
+  }
+
+  & .embeddable-buttondown-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+
+    & p {
+      align-self: center;
+    }
+  }
+
+  & [type="submit"] {
+    background-color: var(--light-purple);
+    padding: 8px;
+    border: 2px solid var(--text-color);
+    box-shadow: 4px 4px 0 0 var(--text-color);
+
+    &:hover {
+      cursor: pointer;
+      filter: brightness(1.03);
+    }
+  }
+}
+
+#bd-email {
+  padding: 8px;
+  border: 1px solid var(--text-color);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -215,6 +257,13 @@ summary:hover {
   .decorations {
     & h2 {
       text-shadow: 1px 1px 1rem var(--text-color), 0 0 0.5rem var(--light-purple), 0 0 0.5rem var(--light-purple);
+  .newsletter {
+    background-color: var(--dark-gray);
+    border-color: var(--dark-purple);
+    box-shadow: 4px 4px 0 0 var(--dark-purple);
+    & [type="submit"] {
+      background-color: var(--dark-purple);
+      color: var(--text-color);
     }
   }
 }
