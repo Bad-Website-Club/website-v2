@@ -20,6 +20,7 @@
   --muted-dark-1: #464a51;
   --muted-light-2: #c2c2c3;
   --muted-dark-2: #585c62;
+  --width: 1024px;
 }
 
 .breadcrumb {
@@ -157,7 +158,8 @@ summary:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 3rem 0;
+  margin: 3rem auto;
+  max-width: calc(var(--width) / 1.5);
 }
 
 .upcoming-bootcamp-link {
@@ -238,7 +240,8 @@ summary:hover {
   flex-direction: column;
   border: 3px solid var(--bwc-black);
   box-shadow: 4px 4px 0 0 var(--bwc-black);
-  margin: 2rem 0;
+  margin: 2rem auto;
+  max-width: calc(var(--width) / 2);
 
   & h2 {
     align-self: center;
