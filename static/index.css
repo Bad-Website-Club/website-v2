@@ -76,9 +76,10 @@ summary:hover {
   flex-wrap: wrap;
 
   .lesson-type {
-    padding: 0.5rem 1rem;
-    border: 2px solid var(--text-color);
-    box-shadow: 4px 4px 0 0 var(--text-color);
+    padding: .25rem 1rem;
+    border: 2px solid var(--bwc-black);
+    box-shadow: 4px 4px 0 0 var(--bwc-black);
+    margin-right: 4px;
 
     &.workshop {
       background-color: var(--light-green);
