@@ -113,13 +113,8 @@ summary:hover {
   display: flex;
   flex-direction: column;
   width: 10rem;
-  height: 6rem;
+  height: 8rem;
   padding: 1rem 2rem;
-  border: 6px solid var(--purple);
-  border-top-color: var(--logo-color-pink);
-  border-left-color: var(--logo-color-pink);
-  border-right-color: var(--logo-color-purple);
-  border-bottom-color: var(--logo-color-purple);
   align-items: center;
   justify-content: center;
   margin: 0 auto 2rem auto;
