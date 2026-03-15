@@ -222,8 +222,8 @@ summary:hover {
   padding: .5rem 2rem;
   display: flex;
   flex-direction: column;
-  border: 3px solid var(--light-purple);
-  box-shadow: 4px 4px 0 0 var(--light-purple);
+  border: 3px solid var(--bwc-black);
+  box-shadow: 4px 4px 0 0 var(--bwc-black);
   margin: 2rem 0;
 
   & h2 {
@@ -243,9 +243,11 @@ summary:hover {
 
   & [type="submit"] {
     background-color: var(--light-purple);
+    color: var(--text-color);
+    font-size: 18px;
     padding: 8px;
-    border: 2px solid var(--text-color);
-    box-shadow: 4px 4px 0 0 var(--text-color);
+    border: 2px solid var(--bwc-black);
+    box-shadow: 4px 4px 0 0 var(--bwc-black);
 
     &:hover {
       cursor: pointer;
@@ -256,7 +258,7 @@ summary:hover {
 
 #bd-email {
   padding: 8px;
-  border: 1px solid var(--text-color);
+  border: 2px solid var(--bwc-black);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -291,11 +293,8 @@ summary:hover {
   }
   .newsletter {
     background-color: var(--dark-gray);
-    border-color: var(--dark-purple);
-    box-shadow: 4px 4px 0 0 var(--dark-purple);
     & [type="submit"] {
       background-color: var(--dark-purple);
-      color: var(--text-color);
     }
   }
   .decorations {
