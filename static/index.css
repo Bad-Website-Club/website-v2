@@ -1,25 +1,21 @@
 :root {
-  --light-red: #f7b3c3;
-  --dark-red: #cf0b39;
-  --light-pink: #ffd9e8;
-  --dark-pink: #9c677d;
-  --light-purple: #e2d4f4;
-  --purple: #9159d3;
-  --dark-purple: #6a2db5;
-  --light-blue: #ccdefc;
-  --blue: #3984f2;
-  --dark-blue: #075cd8;
+  --bwc-black: #0b0810;
+  --bwc-purple: #ba6dc6;
+  --light-purple: #e2d4ee;
+  --dark-purple: #774ab2;
+  --light-pink: #ffd5dd;
+  --dark-pink: #9f3958;
+  --light-red: #e9bdc6;
+  --dark-red: #b72541;
   --light-green: #d5f5d9;
-  --green: #64d970;
-  --dark-green: #2e9439;
-  --light-orange: #ffe5d3;
-  --orange: #ff9e5a;
-  --dark-orange: #cd6e2b;
-  --logo-w-color: #0B0810;
-  --logo-color-purple: #ba6dc6;
-  --logo-color-pink: #ff8fab;
+  --dark-green: #326c51;
+  --light-orange: #fce5a2;
+  --dark-orange: #9e4a00;
+  --light-blue: #93e8f5;
+  --dark-blue: #186781;
   --light-gray: #f0f0f2;
-  --dark-gray: #32363E;
+  --dark-gray: #32363e;
+  --logo-w-color: var(--bwc-black);
 }
 
 .crumb {
