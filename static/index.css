@@ -103,8 +103,9 @@ summary:hover {
 }
 
 .fcc-lesson-link {
-  border: 2px solid var(--text-color);
-  box-shadow: 4px 4px 0 0 var(--text-color);
+  border: 2px solid var(--bwc-black);
+  box-shadow: 4px 4px 0 0 var(--bwc-black);
+  background-color: var(--light-gray);
   padding: 0.5rem 1rem;
   display: inline-block;
   margin: 1rem 0;
@@ -303,6 +304,9 @@ summary:hover {
     & h2 {
       text-shadow: 1px 1px 1rem var(--text-color), 0 0 0.5rem var(--light-purple), 0 0 0.5rem var(--light-purple);
     }
+  }
+  .fcc-lesson-link {
+    background-color: var(--dark-gray);
   }
 }
 
