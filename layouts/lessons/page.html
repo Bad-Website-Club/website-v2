@@ -26,7 +26,7 @@
     >(Check your timezone)</a
   >
 </p>
-<span class="lesson-type {{ .Name }}">{{ .Name }}</span>
+<span class="lesson-type {{ .Name | urlize }}">{{ .Name | humanize }}</span>
 </div>
 {{ end }}
 <p>Instructors: {{ $instructors := .GetTerms "instructors" }}
