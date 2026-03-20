@@ -29,14 +29,7 @@
 <span class="lesson-type {{ .Name | urlize }}">{{ .Name | humanize }}</span>
 </div>
 {{ end }}
-<p>Instructors: {{ $instructors := .GetTerms "instructors" }}
-{{ range $index, $instructor := $instructors }}
-  {{ if (eq $index (sub (len $instructors) 1)) }}
-    <span>and {{ $instructor.Name }}</span>
-  {{ else }}
-    <span>{{ $instructor.Name }}, </span>
-  {{ end }}
-{{ end }}</p>
+<p>Instructors: {{ delimit (.Params.instructors) ", " " and " }}</p>
 {{ range (.GetTerms "unit") }}
 <p>{{ .Name }}</p>
 {{ end }}
