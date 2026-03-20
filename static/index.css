@@ -1,40 +1,48 @@
 :root {
-  --light-red: #f7b3c3;
-  --dark-red: #cf0b39;
-  --light-pink: #ffd9e8;
-  --dark-pink: #9c677d;
-  --light-purple: #e2d4f4;
-  --purple: #9159d3;
-  --dark-purple: #6a2db5;
-  --light-blue: #ccdefc;
-  --blue: #3984f2;
-  --dark-blue: #075cd8;
+  --bwc-black: #0b0810;
+  --bwc-purple: #ba6dc6;
+  --light-purple: #e2d4ee;
+  --dark-purple: #774ab2;
+  --light-pink: #ffd5dd;
+  --dark-pink: #9f3958;
+  --light-red: #e9bdc6;
+  --dark-red: #b72541;
   --light-green: #d5f5d9;
-  --green: #64d970;
-  --dark-green: #2e9439;
-  --light-orange: #ffe5d3;
-  --orange: #ff9e5a;
-  --dark-orange: #cd6e2b;
-  --logo-w-color: #0B0810;
-  --logo-color-purple: #ba6dc6;
-  --logo-color-pink: #ff8fab;
+  --dark-green: #326c51;
+  --light-orange: #fce5a2;
+  --dark-orange: #9e4a00;
+  --light-blue: #93e8f5;
+  --dark-blue: #186781;
   --light-gray: #f0f0f2;
-  --dark-gray: #32363E;
+  --dark-gray: #32363e;
+  --logo-w-color: var(--bwc-black);
+  --muted-light-1: #d8d8d9;
+  --muted-dark-1: #464a51;
+  --muted-light-2: #c2c2c3;
+  --muted-dark-2: #585c62;
+  --width: 1024px;
+}
+
+.breadcrumb {
+  filter: drop-shadow(2px 0px 0px var(--bwc-black));
 }
 
 .crumb {
-  padding: .5rem 1.5rem;
-  background: var(--light-purple);
+  padding: 2px 1rem;
+  background: var(--light-gray);
   clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%, 14px 50%);
   color: var(--text-color);
-  margin-right: -15px;
+  margin-right: -18px;
+  display: inline-block;
+  border: 2px solid var(--bwc-black);
+  border-right: none;
 
   &:first-child {
     clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
   }
 
   &.current {
-    background: var(--light-green);
+    background: var(--muted-light-1);
   }
   &:hover {
     filter: brightness(1.02);
@@ -80,9 +88,10 @@ summary:hover {
   flex-wrap: wrap;
 
   .lesson-type {
-    padding: 0.5rem 1rem;
-    border: 2px solid var(--text-color);
-    box-shadow: 4px 4px 0 0 var(--text-color);
+    padding: .25rem 1rem;
+    border: 2px solid var(--bwc-black);
+    box-shadow: 4px 4px 0 0 var(--bwc-black);
+    margin-right: 4px;
 
     &.workshop {
       background-color: var(--light-green);
@@ -106,8 +115,9 @@ summary:hover {
 }
 
 .fcc-lesson-link {
-  border: 2px solid var(--text-color);
-  box-shadow: 4px 4px 0 0 var(--text-color);
+  border: 2px solid var(--bwc-black);
+  box-shadow: 4px 4px 0 0 var(--bwc-black);
+  background-color: var(--light-gray);
   padding: 0.5rem 1rem;
   display: inline-block;
   margin: 1rem 0;
@@ -117,13 +127,8 @@ summary:hover {
   display: flex;
   flex-direction: column;
   width: 10rem;
-  height: 6rem;
+  height: 8rem;
   padding: 1rem 2rem;
-  border: 6px solid var(--purple);
-  border-top-color: var(--logo-color-pink);
-  border-left-color: var(--logo-color-pink);
-  border-right-color: var(--logo-color-purple);
-  border-bottom-color: var(--logo-color-purple);
   align-items: center;
   justify-content: center;
   margin: 0 auto 2rem auto;
@@ -153,12 +158,13 @@ summary:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 3rem 0;
+  margin: 3rem auto;
+  max-width: calc(var(--width) / 1.5);
 }
 
 .upcoming-bootcamp-link {
-  border: 2px solid var(--purple);
-  box-shadow: 4px 4px 0 0 var(--purple);
+  border: 3px solid var(--text-color);
+  box-shadow: 4px 4px 0 0 var(--bwc-purple);
   padding: 1rem;
   display: inline-flex;
   margin: 1rem 0;
@@ -174,7 +180,7 @@ summary:hover {
 
   &:hover {
     text-decoration: none;
-    box-shadow: 4px 4px 0 0 var(--purple), var(--purple) 0 4px 8px, var(--purple) 0 7px 13px -3px;
+    box-shadow: 4px 4px 0 0 var(--dark-orange), var(--dark-orange) 0 4px 8px, var(--light-purple) 0 7px 13px -3px;
     & svg {
       transform: translateX(20%);
       transition: 0.2s;
@@ -194,9 +200,10 @@ summary:hover {
   align-items: center;
 
   & h2 {
+    font-size: 2rem;
     animation: flicker 2s infinite alternate;
     color: var(--background-color);
-    text-shadow: 1px 1px 1rem var(--text-color), 0 0 0.5rem var(--purple), 0 0 0.5rem var(--purple);
+    text-shadow: 1px 1px 1rem var(--dark-purple), 0 0 0.5rem var(--bwc-black), 0 0 0.5rem var(--bwc-black);
   }
 }
 
@@ -231,9 +238,10 @@ summary:hover {
   padding: .5rem 2rem;
   display: flex;
   flex-direction: column;
-  border: 3px solid var(--light-purple);
-  box-shadow: 4px 4px 0 0 var(--light-purple);
-  margin: 2rem 0;
+  border: 3px solid var(--bwc-black);
+  box-shadow: 4px 4px 0 0 var(--bwc-black);
+  margin: 2rem auto;
+  max-width: calc(var(--width) / 2);
 
   & h2 {
     align-self: center;
@@ -252,9 +260,11 @@ summary:hover {
 
   & [type="submit"] {
     background-color: var(--light-purple);
+    color: var(--text-color);
+    font-size: 18px;
     padding: 8px;
-    border: 2px solid var(--text-color);
-    box-shadow: 4px 4px 0 0 var(--text-color);
+    border: 2px solid var(--bwc-black);
+    box-shadow: 4px 4px 0 0 var(--bwc-black);
 
     &:hover {
       cursor: pointer;
@@ -265,7 +275,13 @@ summary:hover {
 
 #bd-email {
   padding: 8px;
-  border: 1px solid var(--text-color);
+  border: 2px solid var(--bwc-black);
+}
+
+footer {
+  color: var(--muted-dark-2);
+  font-size: 16px;
+  margin-top: 4rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -296,21 +312,27 @@ summary:hover {
     }
   }
   .crumb {
-    color: var(--background-color);
+    background: var(--dark-gray);
+    &.current {
+      background: var(--muted-dark-1);
+    }
   }
   .newsletter {
     background-color: var(--dark-gray);
-    border-color: var(--dark-purple);
-    box-shadow: 4px 4px 0 0 var(--dark-purple);
     & [type="submit"] {
       background-color: var(--dark-purple);
-      color: var(--text-color);
     }
   }
   .decorations {
     & h2 {
       text-shadow: 1px 1px 1rem var(--text-color), 0 0 0.5rem var(--light-purple), 0 0 0.5rem var(--light-purple);
     }
+  }
+  .fcc-lesson-link {
+    background-color: var(--dark-gray);
+  }
+  footer {
+    color: var(--muted-light-2);
   }
 }
 
