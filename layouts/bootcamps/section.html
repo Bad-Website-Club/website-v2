@@ -5,14 +5,83 @@
 {{ $lessons := where .CurrentSection.Pages "Type" "lessons" }}
 {{ $pastLessons := where $lessons "Date" "<" $today }}
 {{ $upcomingLessons := where $lessons "Date" ">" $today }}
-<h2>Upcoming Lessons</h2>
-{{ range $upcomingLessons.ByDate }}
-  <a href="{{ .RelPermalink }}">{{ .Title }}</a><br>
-{{ end }}
-<h2>Past Lessons</h2>
-{{ range $pastLessons.ByDate.Reverse }}
-  <a href="{{ .RelPermalink }}">{{ .Title }}</a><br>
-{{ end }}
+
+{{ $sectionTitle := .Title }}
+
+<div class="lesson-listing">
+  <section class="lesson-group">
+    <div class="lesson-group-heading">
+      <h2>Upcoming Lessons</h2>
+      <p>{{ len $upcomingLessons }} scheduled for {{ $sectionTitle }}</p>
+    </div>
+    <div class="lesson-list-items">
+      {{ range $upcomingLessons.ByDate }}
+        {{ $lessonTypes := .Params.lesson_type }}
+        <article class="lesson-list-item">
+          <div class="metadata-container">
+            <p>{{ .Date | time.Format ":date_medium" }} {{ .Date | time.Format ":time_medium" }}</p>
+            {{ with $lessonTypes }}
+              <div class="lesson-list-types">
+                {{ range . }}
+                  {{ $typeClass := . | urlize }}
+                  <span class="lesson-type {{ $typeClass }}">{{ . | humanize }}</span>
+                {{ end }}
+              </div>
+            {{ end }}
+          </div>
+          <h3 class="lesson-list-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          {{ with .Params.instructors }}
+            <p>Instructors: {{ delimit . ", " }}</p>
+          {{ end }}
+          {{ with .Params.unit }}
+            <p>{{ delimit . ", " }}</p>
+          {{ end }}
+          {{ with .Params.fcc_lesson_url }}
+            <a href="{{ . }}" class="fcc-lesson-link">FreeCodeCamp lesson URL</a>
+          {{ end }}
+        </article>
+      {{ else }}
+        <p class="lesson-list-empty">No upcoming lessons yet.</p>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="lesson-group">
+    <div class="lesson-group-heading">
+      <h2>Past Lessons</h2>
+      <p>{{ len $pastLessons }} already covered</p>
+    </div>
+    <div class="lesson-list-items">
+      {{ range $pastLessons.ByDate.Reverse }}
+        {{ $lessonTypes := .Params.lesson_type }}
+        <article class="lesson-list-item">
+          <div class="metadata-container">
+            <p>{{ .Date | time.Format ":date_medium" }} {{ .Date | time.Format ":time_medium" }}</p>
+            {{ with $lessonTypes }}
+              <div class="lesson-list-types">
+                {{ range . }}
+                  {{ $typeClass := . | urlize }}
+                  <span class="lesson-type {{ $typeClass }}">{{ . | humanize }}</span>
+                {{ end }}
+              </div>
+            {{ end }}
+          </div>
+          <h3 class="lesson-list-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          {{ with .Params.instructors }}
+            <p>Instructors: {{ delimit . ", " }}</p>
+          {{ end }}
+          {{ with .Params.unit }}
+            <p>{{ delimit . ", " }}</p>
+          {{ end }}
+          <a href="{{ .RelPermalink }}" class="fcc-lesson-link">Lesson page</a>
+        </article>
+      {{ else }}
+        <p class="lesson-list-empty">Past lessons will show up here once the bootcamp starts.</p>
+      {{ end }}
+    </div>
+  </section>
+</div>
+
 <p>
     <a href="{{ .Params.fcc_url }}">{{ .Params.fcc_name }} on FreeCodeCamp</a>
 </p>
