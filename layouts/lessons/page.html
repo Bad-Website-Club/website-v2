@@ -29,7 +29,7 @@
 <span class="lesson-type {{ .Name | urlize }}">{{ .Name | humanize }}</span>
 </div>
 {{ end }}
-<p>Instructors: {{ delimit (.Params.instructors) ", " " and " }}</p>
+<p>Instructors: {{ delimit (.Params.instructors) ", " ", and " }}</p>
 {{ range (.GetTerms "unit") }}
 <p>{{ .Name }}</p>
 {{ end }}
