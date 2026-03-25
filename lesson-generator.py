@@ -1,6 +1,12 @@
 import argparse
-from datetime import datetime
+from datetime import datetime, timedelta
+from urllib.parse import urlencode
 import pandas
+
+BASE_SITE_URL = "https://badwebsite.club"
+CALENDAR_TIMEZONE = "Europe/Vienna"
+CALENDAR_START_HOUR = 19
+CALENDAR_DURATION_MINUTES = 60
 
 
 def main():
@@ -41,6 +47,13 @@ def generate_lesson_from_group(date_value, group, bootcamp, columns, lesson_name
     date_dt = datetime.strptime(str(date_value), "%Y-%m-%d")
     date_slug = date_dt.strftime("%Y-%m-%d")
     filename = f'./content/bootcamps/{bootcamp}/lessons/{date_slug}.md'
+    lesson_url = f"{BASE_SITE_URL}/bootcamps/{bootcamp}/lessons/{date_slug}/"
+    calendar_ics_url = f"/calendars/{bootcamp}-lessons.ics"
+    calendar_google_url = build_google_calendar_url(
+        lesson_name,
+        lesson_url,
+        date_dt,
+    )
     lesson_types = unique_ordered(
         normalize_lesson_type(value)
         for value in group[require_column(columns, ["Lesson type"])].tolist()
@@ -61,6 +74,8 @@ def generate_lesson_from_group(date_value, group, bootcamp, columns, lesson_name
         f.write(f'alternative_recording_urls = []\n')
         f.write(f'fcc_lesson_url = \'{links[0] if links else ""}\'\n')
         f.write(f'fcc_lesson_urls = {format_array(links)}\n')
+        f.write(f'calendar_ics_url = \'{calendar_ics_url}\'\n')
+        f.write(f'calendar_google_url = \'{calendar_google_url}\'\n')
         f.write(f'type = \'lessons\'\n')
         f.write(f'lesson_type = {format_array(lesson_types)}\n')
         f.write(f'instructors = [\'Jess\', \'Carmen\', \'Eda\']\n')
@@ -119,6 +134,29 @@ def build_group_titles(grouped_rows):
         lesson_titles.append(f'{base_title} Part {title_indexes[base_title]}')
 
     return lesson_titles
+
+
+def build_google_calendar_url(title, lesson_url, date_dt):
+    start_at = date_dt.replace(
+        hour=CALENDAR_START_HOUR,
+        minute=0,
+        second=0,
+        microsecond=0,
+    )
+    end_at = start_at + timedelta(minutes=CALENDAR_DURATION_MINUTES)
+    params = {
+        "action": "TEMPLATE",
+        "text": title,
+        "dates": f"{format_google_datetime(start_at)}/{format_google_datetime(end_at)}",
+        "details": lesson_url,
+        "location": lesson_url,
+        "ctz": CALENDAR_TIMEZONE,
+    }
+    return f"https://calendar.google.com/calendar/render?{urlencode(params)}"
+
+
+def format_google_datetime(value):
+    return value.strftime("%Y%m%dT%H%M%S")
 
 
 def infer_common_name_prefix(names):
@@ -198,7 +236,7 @@ def normalize_lesson_type(value):
 
 
 def normalize_text(value):
-    if value is None:
+    if value is None or pandas.isna(value):
         return ""
     text = str(value).strip()
     return text

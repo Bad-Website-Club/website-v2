@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Bad Website Club//Lesson Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:spring-2026-2026-04-24@badwebsite.club
+DTSTAMP:20260325T093401Z
+DTSTART:20260424T170000Z
+DTEND:20260424T180000Z
+SUMMARY:Computers - Computer Basics Part 1
+DESCRIPTION:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-04-2
+ 4/
+LOCATION:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-04-24/
+URL:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-04-24/
+END:VEVENT
+END:VCALENDAR
