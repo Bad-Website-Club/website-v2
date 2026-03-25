@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Bad Website Club//Lesson Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:spring-2026-2026-06-25@badwebsite.club
+DTSTAMP:20260325T094012Z
+DTSTART:20260625T170000Z
+DTEND:20260625T180000Z
+SUMMARY:CSS - Animations Part 1
+DESCRIPTION:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-06-2
+ 5/
+LOCATION:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-06-25/
+URL:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-06-25/
+END:VEVENT
+END:VCALENDAR

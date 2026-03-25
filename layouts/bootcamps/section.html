@@ -1,12 +1,24 @@
 {{ define "main" }}
 <h1>{{ .Name }}</h1>
 {{ $today := now }}
+{{ $pathParts := split .RelPermalink "/" }}
+{{ $bootcampSlug := "" }}
+{{ if ge (len $pathParts) 3 }}
+  {{ $bootcampSlug = index $pathParts 2 }}
+{{ end }}
 
 {{ $lessons := where .CurrentSection.Pages "Type" "lessons" }}
 {{ $pastLessons := where $lessons "Date" "<" $today }}
 {{ $upcomingLessons := where $lessons "Date" ">" $today }}
 
 {{ $sectionTitle := .Title }}
+
+{{ if $bootcampSlug }}
+  <div class="lesson-actions">
+    <a href="/calendars/{{ $bootcampSlug }}-lessons.ics" class="fcc-lesson-link">Full Schedule iCal Feed</a>
+  </div>
+  <p><a href="https://support.google.com/calendar/answer/37100?hl=en">How to subscribe to this feed in Google Calendar</a></p>
+{{ end }}
 
 <div class="lesson-listing">
   <section class="lesson-group">
@@ -35,9 +47,6 @@
           {{ end }}
           {{ with .Params.unit }}
             <p>{{ delimit . ", " }}</p>
-          {{ end }}
-          {{ with .Params.fcc_lesson_url }}
-            <a href="{{ . }}" class="fcc-lesson-link">FreeCodeCamp lesson URL</a>
           {{ end }}
         </article>
       {{ else }}

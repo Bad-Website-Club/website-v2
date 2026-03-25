@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Bad Website Club//Lesson Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:spring-2026-2026-05-26@badwebsite.club
+DTSTAMP:20260325T094012Z
+DTSTART:20260526T170000Z
+DTEND:20260526T180000Z
+SUMMARY:Design a Business Card
+DESCRIPTION:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-05-2
+ 6/
+LOCATION:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-05-26/
+URL:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-05-26/
+END:VEVENT
+END:VCALENDAR
