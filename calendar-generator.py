@@ -32,6 +32,7 @@ def main():
 
     output_dir = Path(f"static/calendars/{args.bootcamp}")
     output_dir.mkdir(parents=True, exist_ok=True)
+    combined_output = Path(f"static/calendars/{args.bootcamp}-lessons.ics")
 
     events = []
     for lesson_file in sorted(lesson_dir.glob("*.md")):
@@ -43,7 +44,9 @@ def main():
         write_ics_file(output_dir / f"{lesson_file.stem}.ics", event)
         events.append(event)
 
+    write_ics_calendar(combined_output, events)
     print(f"Wrote {len(events)} lesson calendar files to {output_dir}")
+    print(f"Wrote combined calendar feed to {combined_output}")
 
 
 def build_event(lesson_file, bootcamp, base_url, duration_minutes):
@@ -82,6 +85,10 @@ def load_frontmatter(lesson_file):
 
 
 def write_ics_file(output_path, event):
+    write_ics_calendar(output_path, [event])
+
+
+def write_ics_calendar(output_path, events):
     now_utc = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     lines = [
         "BEGIN:VCALENDAR",
@@ -89,22 +96,29 @@ def write_ics_file(output_path, event):
         "PRODID:-//Bad Website Club//Lesson Calendar//EN",
         "CALSCALE:GREGORIAN",
         "METHOD:PUBLISH",
-        "BEGIN:VEVENT",
-        fold_ical_line(f"UID:{event['uid']}"),
-        fold_ical_line(f"DTSTAMP:{now_utc}"),
-        fold_ical_line(
-            f"DTSTART:{event['start_at'].astimezone(UTC).strftime('%Y%m%dT%H%M%SZ')}"
-        ),
-        fold_ical_line(
-            f"DTEND:{event['end_at'].astimezone(UTC).strftime('%Y%m%dT%H%M%SZ')}"
-        ),
-        fold_ical_line(f"SUMMARY:{escape_ical_text(event['title'])}"),
-        fold_ical_line(f"DESCRIPTION:{escape_ical_text(event['url'])}"),
-        fold_ical_line(f"LOCATION:{escape_ical_text(event['url'])}"),
-        fold_ical_line(f"URL:{event['url']}"),
-        "END:VEVENT",
-        "END:VCALENDAR",
     ]
+
+    for event in events:
+        lines.extend(
+            [
+                "BEGIN:VEVENT",
+                fold_ical_line(f"UID:{event['uid']}"),
+                fold_ical_line(f"DTSTAMP:{now_utc}"),
+                fold_ical_line(
+                    f"DTSTART:{event['start_at'].astimezone(UTC).strftime('%Y%m%dT%H%M%SZ')}"
+                ),
+                fold_ical_line(
+                    f"DTEND:{event['end_at'].astimezone(UTC).strftime('%Y%m%dT%H%M%SZ')}"
+                ),
+                fold_ical_line(f"SUMMARY:{escape_ical_text(event['title'])}"),
+                fold_ical_line(f"DESCRIPTION:{escape_ical_text(event['url'])}"),
+                fold_ical_line(f"LOCATION:{escape_ical_text(event['url'])}"),
+                fold_ical_line(f"URL:{event['url']}"),
+                "END:VEVENT",
+            ]
+        )
+
+    lines.append("END:VCALENDAR")
 
     output_path.write_text("\r\n".join(lines) + "\r\n", encoding="utf-8")
 
