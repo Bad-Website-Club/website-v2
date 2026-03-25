@@ -48,9 +48,6 @@
           {{ with .Params.unit }}
             <p>{{ delimit . ", " }}</p>
           {{ end }}
-          {{ with .Params.fcc_lesson_url }}
-            <a href="{{ . }}" class="fcc-lesson-link">FreeCodeCamp lesson URL</a>
-          {{ end }}
         </article>
       {{ else }}
         <p class="lesson-list-empty">No upcoming lessons yet.</p>
