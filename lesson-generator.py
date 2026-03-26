@@ -1,11 +1,11 @@
 import argparse
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from urllib.parse import urlencode
 import pandas
 
 BASE_SITE_URL = "https://badwebsite.club"
-CALENDAR_TIMEZONE = "Europe/Vienna"
-CALENDAR_START_HOUR = 19
+CALENDAR_TIMEZONE = "UTC"
+CALENDAR_START_HOUR = 15
 CALENDAR_DURATION_MINUTES = 60
 
 
@@ -66,7 +66,14 @@ def generate_lesson_from_group(date_value, group, bootcamp, columns, lesson_name
     )
     with open(filename, 'w+', encoding='utf-8') as f:
         f.write('+++\n')
-        f.write(f'date = \'{date_dt.replace(hour=19, minute=0, second=0).astimezone().isoformat(timespec="seconds")}\'\n')
+        lesson_start = date_dt.replace(
+            hour=CALENDAR_START_HOUR,
+            minute=0,
+            second=0,
+            microsecond=0,
+            tzinfo=timezone.utc,
+        )
+        f.write(f'date = \'{lesson_start.isoformat(timespec="seconds")}\'\n')
         f.write(f'etz_url = \'\'\n')
         f.write(f'draft = true\n')
         f.write(f'title = \'{lesson_name}\'\n')
@@ -142,6 +149,7 @@ def build_google_calendar_url(title, lesson_url, date_dt):
         minute=0,
         second=0,
         microsecond=0,
+        tzinfo=timezone.utc,
     )
     end_at = start_at + timedelta(minutes=CALENDAR_DURATION_MINUTES)
     params = {
