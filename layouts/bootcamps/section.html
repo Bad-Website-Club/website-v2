@@ -1,10 +1,9 @@
 {{ define "main" }}
 <h1>{{ .Name }}</h1>
 {{ $today := now }}
-{{ $pathParts := split .RelPermalink "/" }}
 {{ $bootcampSlug := "" }}
-{{ if ge (len $pathParts) 3 }}
-  {{ $bootcampSlug = index $pathParts 2 }}
+{{ with .File }}
+  {{ $bootcampSlug = .ContentBaseName }}
 {{ end }}
 
 {{ $lessons := (where .RegularPages "Type" "lessons").ByDate }}

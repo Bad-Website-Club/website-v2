@@ -39,13 +39,16 @@
 {{ with .Params.fcc_lesson_url }}
 <a href="{{ . }}" class="fcc-lesson-link">Primary FreeCodeCamp lesson URL</a>
 {{ end }}
-{{ $pathParts := split .RelPermalink "/" }}
+{{ $bootcampSlug := "" }}
+{{ with .CurrentSection.Parent.File }}
+  {{ $bootcampSlug = .ContentBaseName }}
+{{ end }}
 {{ $lessonSlug := "" }}
-{{ if ge (len $pathParts) 5 }}
-  {{ $lessonSlug = index $pathParts 4 }}
+{{ with .File }}
+  {{ $lessonSlug = .ContentBaseName }}
 {{ end }}
 {{ if gt (len (findRE "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" $lessonSlug)) 0 }}
-<a href="{{ printf "calendars/%s/%s.ics" (index $pathParts 2) (index $pathParts 4) | relURL }}" class="fcc-lesson-link">Download iCal File</a>
+<a href="{{ printf "calendars/%s/%s.ics" $bootcampSlug $lessonSlug | relURL }}" class="fcc-lesson-link">Download iCal File</a>
 {{ end }}
 </div>
 {{ .Content }}
