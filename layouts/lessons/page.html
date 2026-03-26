@@ -19,9 +19,8 @@
 </div>
 {{ end }}
 <div class="metadata-container">
-<p>{{ .Date | time.Format ":date_medium" }} {{ .Date | time.Format
-    ":time_medium" }}
-  <a href="{{ .Params.etz_url }}"
+<p>{{ .Date | time.Format ":date_medium" }} {{ .Date.UTC | time.Format "3pm MST" }}
+  <a href="https://time.unitarium.com/utc/1500"
     >(Check your timezone)</a
   >
 </p>
