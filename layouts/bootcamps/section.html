@@ -7,17 +7,60 @@
   {{ $bootcampSlug = index $pathParts 2 }}
 {{ end }}
 
-{{ $lessons := where .CurrentSection.Pages "Type" "lessons" }}
+{{ $lessons := (where .RegularPages "Type" "lessons").ByDate }}
 {{ $pastLessons := where $lessons "Date" "<" $today }}
 {{ $upcomingLessons := where $lessons "Date" ">" $today }}
-
 {{ $sectionTitle := .Title }}
+{{ $firstLesson := "" }}
+{{ $lastLesson := "" }}
+{{ $lessonTimeLabels := slice }}
+{{ if gt (len $lessons) 0 }}
+  {{ $firstLesson = index $lessons 0 }}
+  {{ $lastLesson = index $lessons (sub (len $lessons) 1) }}
+  {{ range $lessons }}
+    {{ $timeLabel := .Date | time.Format "15:04 MST" }}
+    {{ if not (in $lessonTimeLabels $timeLabel) }}
+      {{ $lessonTimeLabels = $lessonTimeLabels | append $timeLabel }}
+    {{ end }}
+  {{ end }}
+{{ end }}
 
 {{ if $bootcampSlug }}
   <div class="lesson-actions">
     <a href="/calendars/{{ $bootcampSlug }}-lessons.ics" class="fcc-lesson-link">Full Schedule iCal Feed</a>
   </div>
   <p><a href="https://support.google.com/calendar/answer/37100?hl=en">How to subscribe to this feed in Google Calendar</a></p>
+{{ end }}
+
+{{ if gt (len $lessons) 0 }}
+  <section class="explainer">
+    <p>Jess, Eda, and Carmen have been running free bootcamps for a few years, and we're happy to be offering these through the Bad Website Club now!</p>
+
+    <h2>Details</h2>
+    <ul>
+      <li>No signups, no mandatory attendance, no tests: this is completely free and paced as you like.</li>
+      <li>Materials and a free certificate are part of <a href="{{ .Params.fcc_url }}">{{ .Params.fcc_name }} on freeCodeCamp</a>.</li>
+      <li>You can chat and collaborate on the <a href="https://discord.gg/pySW9YZfYY">Bad Website Club Discord</a>.</li>
+    </ul>
+
+    <h2>When?</h2>
+    <p>Lessons run from <strong>{{ $firstLesson.Date | time.Format "Monday, January 2, 2006" }}</strong> to <strong>{{ $lastLesson.Date | time.Format "Monday, January 2, 2006" }}</strong>.</p>
+
+    <h2>What time?</h2>
+    <p>
+      {{ if eq (len $lessonTimeLabels) 1 }}
+        All scheduled lessons start at <strong>{{ index $lessonTimeLabels 0 }}</strong>.
+      {{ else }}
+        Scheduled lesson times currently include <strong>{{ delimit $lessonTimeLabels ", " ", and " }}</strong>.
+      {{ end }}
+    </p>
+
+    <h2>Where?</h2>
+    <p>Jess, Eda, and Carmen host the bootcamp together. You can follow along on our <a href="https://www.youtube.com/@badwebsiteclub">YouTube channel</a> and on <a href="https://www.twitch.tv/jesslynnrose">Jess' Twitch channel</a> and <a href="https://www.twitch.tv/hola_soy_milk_">Carmen's Twitch channel</a>.</p>
+
+    <h2>Calendar?</h2>
+    <p><a href="/calendars/{{ $bootcampSlug }}-lessons.ics">Download or subscribe to the full lesson calendar</a>. For Google Calendar, use the iCal feed with <a href="https://support.google.com/calendar/answer/37100?hl=en">these subscription instructions</a>.</p>
+  </section>
 {{ end }}
 
 <div class="lesson-listing">
