@@ -1,7 +1,7 @@
 import argparse
-from datetime import UTC, datetime, timedelta
+import ast
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
-import tomllib
 
 
 DEFAULT_BASE_URL = "https://badwebsite.club"
@@ -81,7 +81,23 @@ def load_frontmatter(lesson_file):
     parts = text.split("+++", 2)
     if len(parts) < 3:
         return {}
-    return tomllib.loads(parts[1].strip())
+    return parse_simple_toml(parts[1].strip())
+
+
+def parse_simple_toml(frontmatter_text):
+    parsed = {}
+    for raw_line in frontmatter_text.splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip()
+        try:
+            parsed[key] = ast.literal_eval(value)
+        except (SyntaxError, ValueError):
+            parsed[key] = value.strip("'\"")
+    return parsed
 
 
 def write_ics_file(output_path, event):
@@ -89,7 +105,7 @@ def write_ics_file(output_path, event):
 
 
 def write_ics_calendar(output_path, events):
-    now_utc = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+    now_utc = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     lines = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
@@ -105,10 +121,10 @@ def write_ics_calendar(output_path, events):
                 fold_ical_line(f"UID:{event['uid']}"),
                 fold_ical_line(f"DTSTAMP:{now_utc}"),
                 fold_ical_line(
-                    f"DTSTART:{event['start_at'].astimezone(UTC).strftime('%Y%m%dT%H%M%SZ')}"
+                    f"DTSTART:{event['start_at'].astimezone(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}"
                 ),
                 fold_ical_line(
-                    f"DTEND:{event['end_at'].astimezone(UTC).strftime('%Y%m%dT%H%M%SZ')}"
+                    f"DTEND:{event['end_at'].astimezone(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}"
                 ),
                 fold_ical_line(f"SUMMARY:{escape_ical_text(event['title'])}"),
                 fold_ical_line(f"DESCRIPTION:{escape_ical_text(event['url'])}"),
