@@ -7,9 +7,9 @@
 {{ $sorted := sort $upcoming "Params.start_date" "asc" }}
 <section class="upcoming-bootcamp">
 <div class="decorations">
-  <img src="/decorations/skull.png" alt="Skull decoration" class="decoration skull">
+  <img src="{{ "decorations/skull.png" | relURL }}" alt="Skull decoration" class="decoration skull">
   <h2>Upcoming Bootcamp</h2>
-  <img src="/decorations/moon.png" alt="Moon decoration" class="decoration moon">
+  <img src="{{ "decorations/moon.png" | relURL }}" alt="Moon decoration" class="decoration moon">
 </div>
 {{ with index $bootcamps 0 }}
 <a href="{{ .RelPermalink }}" class="upcoming-bootcamp-link">
@@ -18,9 +18,9 @@
 </a>
 {{ end }}
 <div class="decorations">
-<img src="/decorations/candle.png" alt="Candle decoration" class="decoration candle">
-<img src="/decorations/ghost.png" alt="Ghost decoration" class="decoration ghost">
-<img src="/decorations/magic-glass.png" alt="Magic glass decoration" class="decoration magic-glass">
+<img src="{{ "decorations/candle.png" | relURL }}" alt="Candle decoration" class="decoration candle">
+<img src="{{ "decorations/ghost.png" | relURL }}" alt="Ghost decoration" class="decoration ghost">
+<img src="{{ "decorations/magic-glass.png" | relURL }}" alt="Magic glass decoration" class="decoration magic-glass">
 </div>
 </section>
 
@@ -58,5 +58,4 @@
   </details>
 </section>
 {{ end }}
-
 

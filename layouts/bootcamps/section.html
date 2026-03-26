@@ -15,7 +15,7 @@
 
 {{ if $bootcampSlug }}
   <div class="lesson-actions">
-    <a href="/calendars/{{ $bootcampSlug }}-lessons.ics" class="fcc-lesson-link">Full Schedule iCal Feed</a>
+    <a href="{{ printf "calendars/%s-lessons.ics" $bootcampSlug | relURL }}" class="fcc-lesson-link">Full Schedule iCal Feed</a>
   </div>
   <p><a href="https://support.google.com/calendar/answer/37100?hl=en">How to subscribe to this feed in Google Calendar</a></p>
 {{ end }}
