@@ -12,16 +12,9 @@
 {{ $sectionTitle := .Title }}
 {{ $firstLesson := "" }}
 {{ $lastLesson := "" }}
-{{ $lessonTimeLabels := slice }}
 {{ if gt (len $lessons) 0 }}
   {{ $firstLesson = index $lessons 0 }}
   {{ $lastLesson = index $lessons (sub (len $lessons) 1) }}
-  {{ range $lessons }}
-    {{ $timeLabel := .Date | time.Format "15:04 MST" }}
-    {{ if not (in $lessonTimeLabels $timeLabel) }}
-      {{ $lessonTimeLabels = $lessonTimeLabels | append $timeLabel }}
-    {{ end }}
-  {{ end }}
 {{ end }}
 
 {{ if $bootcampSlug }}
@@ -47,11 +40,7 @@
 
     <h2>What time?</h2>
     <p>
-      {{ if eq (len $lessonTimeLabels) 1 }}
-        All scheduled lessons start at <strong>{{ index $lessonTimeLabels 0 }}</strong>.
-      {{ else }}
-        Scheduled lesson times currently include <strong>{{ delimit $lessonTimeLabels ", " ", and " }}</strong>.
-      {{ end }}
+      All scheduled lessons start at <strong>3pm UTC</strong>. <a href="https://time.unitarium.com/utc/1500">Check your timezone</a>.
     </p>
 
     <h2>Where?</h2>
@@ -73,7 +62,7 @@
         {{ $lessonTypes := .Params.lesson_type }}
         <article class="lesson-list-item">
           <div class="metadata-container">
-            <p>{{ .Date | time.Format ":date_medium" }} {{ .Date | time.Format ":time_medium" }}</p>
+            <p>{{ .Date | time.Format ":date_medium" }} 3pm UTC</p>
             {{ with $lessonTypes }}
               <div class="lesson-list-types">
                 {{ range . }}
@@ -107,7 +96,7 @@
         {{ $lessonTypes := .Params.lesson_type }}
         <article class="lesson-list-item">
           <div class="metadata-container">
-            <p>{{ .Date | time.Format ":date_medium" }} {{ .Date | time.Format ":time_medium" }}</p>
+            <p>{{ .Date | time.Format ":date_medium" }} 3pm UTC</p>
             {{ with $lessonTypes }}
               <div class="lesson-list-types">
                 {{ range . }}
