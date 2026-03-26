@@ -59,7 +59,7 @@
     <p>Jess, Eda, and Carmen host the bootcamp together. You can follow along on our <a href="https://www.youtube.com/@badwebsiteclub">YouTube channel</a> and on <a href="https://www.twitch.tv/jesslynnrose">Jess' Twitch channel</a> and <a href="https://www.twitch.tv/hola_soy_milk_">Carmen's Twitch channel</a>.</p>
 
     <h2>Calendar?</h2>
-    <p><a href="/calendars/{{ $bootcampSlug }}-lessons.ics">Download or subscribe to the full lesson calendar</a>. For Google Calendar, use the iCal feed with <a href="https://support.google.com/calendar/answer/37100?hl=en">these subscription instructions</a>.</p>
+    <p><a href="{{ printf "calendars/%s-lessons.ics" $bootcampSlug | relURL }}">Download or subscribe to the full lesson calendar</a>. For Google Calendar, use the iCal feed with <a href="https://support.google.com/calendar/answer/37100?hl=en">these subscription instructions</a>.</p>
   </section>
 {{ end }}
 
