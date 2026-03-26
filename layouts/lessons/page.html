@@ -19,7 +19,7 @@
 </div>
 {{ end }}
 <div class="metadata-container">
-<p>{{ .Date | time.Format ":date_medium" }} 3pm UTC
+<p>{{ .Date | time.Format ":date_medium" }} {{ .Date.UTC | time.Format "3pm MST" }}
   <a href="https://time.unitarium.com/utc/1500"
     >(Check your timezone)</a
   >

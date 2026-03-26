@@ -40,7 +40,7 @@
 
     <h2>What time?</h2>
     <p>
-      All scheduled lessons start at <strong>3pm UTC</strong>. <a href="https://time.unitarium.com/utc/1500">Check your timezone</a>.
+      All scheduled lessons start at <strong>{{ $firstLesson.Date.UTC | time.Format "3pm MST" }}</strong>. <a href="https://time.unitarium.com/utc/1500">Check your timezone</a>.
     </p>
 
     <h2>Where?</h2>
@@ -62,7 +62,7 @@
         {{ $lessonTypes := .Params.lesson_type }}
         <article class="lesson-list-item">
           <div class="metadata-container">
-            <p>{{ .Date | time.Format ":date_medium" }} 3pm UTC</p>
+            <p>{{ .Date | time.Format ":date_medium" }} {{ .Date.UTC | time.Format "3pm MST" }}</p>
             {{ with $lessonTypes }}
               <div class="lesson-list-types">
                 {{ range . }}
@@ -96,7 +96,7 @@
         {{ $lessonTypes := .Params.lesson_type }}
         <article class="lesson-list-item">
           <div class="metadata-container">
-            <p>{{ .Date | time.Format ":date_medium" }} 3pm UTC</p>
+            <p>{{ .Date | time.Format ":date_medium" }} {{ .Date.UTC | time.Format "3pm MST" }}</p>
             {{ with $lessonTypes }}
               <div class="lesson-list-types">
                 {{ range . }}
