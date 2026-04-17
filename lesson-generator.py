@@ -1,5 +1,6 @@
 import argparse
 from datetime import datetime, timedelta, timezone
+import re
 from urllib.parse import urlencode
 import pandas
 
@@ -122,18 +123,18 @@ def generate_lesson_from_group(
         f.write('+++\n')
         f.write('\n')
         f.write('## Before this session, please:\n\n')
-        for item in before_section:
-            f.write(f'- {item}\n')
+        for line in format_section_lines(before_section):
+            f.write(f'{line}\n')
         f.write('\n')
 
         f.write("## During this session, we'll:\n\n")
-        for item in during_section:
-            f.write(f'- {item}\n')
+        for line in format_section_lines(during_section):
+            f.write(f'{line}\n')
         f.write('\n')
 
         f.write('## After this session, please:\n\n')
-        for item in after_section:
-            f.write(f'- {item}\n')
+        for line in format_section_lines(after_section):
+            f.write(f'{line}\n')
         f.write('\n')
 
 
@@ -160,9 +161,46 @@ def build_section_items(group, columns, text_column_candidates):
 
 
 def interpolate_named_link(template, name, link):
+    if normalize_text(template).casefold() == "review notes":
+        template = "Review notes for []"
     link_text = escape_markdown(name)
     replacement = f'[{link_text}]({link})' if link else link_text
     return template.replace('[]', replacement)
+
+
+def format_section_lines(items):
+    read_targets = []
+    review_targets = []
+    other_items = []
+
+    for item in items:
+        read_match = re.match(r'^Read\s+(.+?)\s+and\s+take\s+notes\s*$', item, re.IGNORECASE)
+        if read_match:
+            read_targets.append(read_match.group(1).strip())
+            continue
+
+        review_match = re.match(r'^Review\s+notes\s+for\s+(.+?)\s*$', item, re.IGNORECASE)
+        if review_match:
+            review_targets.append(review_match.group(1).strip())
+            continue
+
+        other_items.append(item)
+
+    lines = []
+    if read_targets:
+        lines.append('- Read and take notes for:')
+        for target in read_targets:
+            lines.append(f'  - {target}')
+
+    if review_targets:
+        lines.append('- Review notes for:')
+        for target in review_targets:
+            lines.append(f'  - {target}')
+
+    for item in other_items:
+        lines.append(f'- {item}')
+
+    return lines
 
 
 def infer_lesson_name(group, columns):
