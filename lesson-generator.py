@@ -13,6 +13,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('file', help='Path to the CSV file', type=str)
     parser.add_argument('bootcamp', help='The bootcamp name', type=str)
+    parser.add_argument(
+        '--draft',
+        action='store_true',
+        help='Generate sessions as drafts (default: published).',
+    )
     args = parser.parse_args()
     csv = pandas.read_csv(args.file)
     columns = get_column_lookup(csv.columns)
@@ -20,6 +25,21 @@ def main():
         columns,
         ["Date covered", "Date Covered", "Date"],
         'Expected a date column such as "Date covered" or "Date" in CSV',
+    )
+    require_column(
+        columns,
+        ["Date Assigned", "Date assigned"],
+        'Expected a "Date Assigned" column in CSV',
+    )
+    require_column(
+        columns,
+        ["Assigned"],
+        'Expected an "Assigned" column in CSV',
+    )
+    require_column(
+        columns,
+        ["Covered in class", "Covered"],
+        'Expected a "Covered in class" (or "Covered") column in CSV',
     )
 
     grouped_rows = []
@@ -33,18 +53,29 @@ def main():
         )
 
     lesson_titles = build_group_titles(grouped_rows)
-    for grouped_row, lesson_title in zip(grouped_rows, lesson_titles):
+    for index, (grouped_row, lesson_title) in enumerate(zip(grouped_rows, lesson_titles)):
+        next_group = grouped_rows[index + 1]["group"] if index + 1 < len(grouped_rows) else None
         generate_lesson_from_group(
             grouped_row["date_value"],
             grouped_row["group"],
             args.bootcamp,
             columns,
             lesson_title,
+            next_group,
+            args.draft,
         )
 
 
-def generate_lesson_from_group(date_value, group, bootcamp, columns, lesson_name):
-    date_dt = datetime.strptime(str(date_value), "%Y-%m-%d")
+def generate_lesson_from_group(
+    date_value,
+    group,
+    bootcamp,
+    columns,
+    lesson_name,
+    next_group,
+    draft,
+):
+    date_dt = parse_csv_date(date_value)
     date_slug = date_dt.strftime("%Y-%m-%d")
     filename = f'./content/bootcamps/{bootcamp}/lessons/{date_slug}.md'
     lesson_url = f"{BASE_SITE_URL}/bootcamps/{bootcamp}/lessons/{date_slug}/"
@@ -61,9 +92,12 @@ def generate_lesson_from_group(date_value, group, bootcamp, columns, lesson_name
     units = unique_ordered(
         normalize_text(value) for value in group[require_column(columns, ["Unit"])].tolist()
     )
-    links = unique_ordered(
-        normalize_text(value) for value in group[require_column(columns, ["Link"])].tolist()
+    before_section = build_section_items(group, columns, ["Assigned"])
+    during_section = build_section_items(group, columns, ["Covered in class", "Covered"])
+    after_section = (
+        build_section_items(next_group, columns, ["Assigned"]) if next_group is not None else []
     )
+
     with open(filename, 'w+', encoding='utf-8') as f:
         f.write('+++\n')
         lesson_start = date_dt.replace(
@@ -75,12 +109,10 @@ def generate_lesson_from_group(date_value, group, bootcamp, columns, lesson_name
         )
         f.write(f'date = \'{lesson_start.isoformat(timespec="seconds")}\'\n')
         f.write(f'etz_url = \'\'\n')
-        f.write(f'draft = true\n')
+        f.write(f'draft = {"true" if draft else "false"}\n')
         f.write(f'title = \'{lesson_name}\'\n')
         f.write(f'youtube_id = \'\'\n')
         f.write(f'alternative_recording_urls = []\n')
-        f.write(f'fcc_lesson_url = \'{links[0] if links else ""}\'\n')
-        f.write(f'fcc_lesson_urls = {format_array(links)}\n')
         f.write(f'calendar_ics_url = \'{calendar_ics_url}\'\n')
         f.write(f'calendar_google_url = \'{calendar_google_url}\'\n')
         f.write(f'type = \'lessons\'\n')
@@ -89,19 +121,48 @@ def generate_lesson_from_group(date_value, group, bootcamp, columns, lesson_name
         f.write(f'unit = {format_array(units)}\n')
         f.write('+++\n')
         f.write('\n')
-        f.write('## FreeCodeCamp Lessons\n\n')
-        for row in sort_group_rows(group):
-            lesson_number = get_lesson_number(row, columns)
-            lesson_title = get_row_value(row, columns, "Name")
-            lesson_url = get_row_value(row, columns, "Link")
-            lesson_type = get_row_value(row, columns, "Lesson type")
-            label = f'{lesson_number}. {lesson_title}' if lesson_number else lesson_title
-            if lesson_type:
-                label = f'{label} ({lesson_type})'
-            if lesson_url:
-                f.write(f'- [{escape_markdown(label)}]({lesson_url})\n')
-            else:
-                f.write(f'- {escape_markdown(label)}\n')
+        f.write('## Before this session, please:\n\n')
+        for item in before_section:
+            f.write(f'- {item}\n')
+        f.write('\n')
+
+        f.write("## During this session, we'll:\n\n")
+        for item in during_section:
+            f.write(f'- {item}\n')
+        f.write('\n')
+
+        f.write('## After this session, please:\n\n')
+        for item in after_section:
+            f.write(f'- {item}\n')
+        f.write('\n')
+
+
+def parse_csv_date(value):
+    parsed = pandas.to_datetime(normalize_text(value), errors="raise")
+    return parsed.to_pydatetime().replace(tzinfo=None)
+
+
+def build_section_items(group, columns, text_column_candidates):
+    if group is None:
+        return []
+
+    text_column = require_column(columns, text_column_candidates)
+    items = []
+    for row in sort_group_rows(group):
+        template = normalize_text(row.get(text_column))
+        if not template:
+            continue
+
+        name = get_row_value(row, columns, "Name")
+        link = get_row_value(row, columns, "Link")
+        items.append(interpolate_named_link(template, name, link))
+    return items
+
+
+def interpolate_named_link(template, name, link):
+    link_text = escape_markdown(name)
+    replacement = f'[{link_text}]({link})' if link else link_text
+    return template.replace('[]', replacement)
 
 
 def infer_lesson_name(group, columns):

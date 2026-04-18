@@ -35,9 +35,6 @@
 <p>{{ .Name }}</p>
 {{ end }}
 <div class="lesson-actions">
-{{ with .Params.fcc_lesson_url }}
-<a href="{{ . }}" class="fcc-lesson-link">Primary FreeCodeCamp lesson URL</a>
-{{ end }}
 {{ $bootcampSlug := "" }}
 {{ with .CurrentSection.Parent.File }}
   {{ $bootcampSlug = .ContentBaseName }}

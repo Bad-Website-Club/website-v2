@@ -36,25 +36,25 @@
     </ul>
 
     <h2>When?</h2>
-    <p>Lessons run from <strong>{{ $firstLesson.Date | time.Format "Monday, January 2, 2006" }}</strong> to <strong>{{ $lastLesson.Date | time.Format "Monday, January 2, 2006" }}</strong>.</p>
+    <p>Sessions run from <strong>{{ $firstLesson.Date | time.Format "Monday, January 2, 2006" }}</strong> to <strong>{{ $lastLesson.Date | time.Format "Monday, January 2, 2006" }}</strong>.</p>
 
     <h2>What time?</h2>
     <p>
-      All scheduled lessons start at <strong>{{ $firstLesson.Date.UTC | time.Format "3pm MST" }}</strong>. <a href="https://time.unitarium.com/utc/1500">Check your timezone</a>.
+      All scheduled sessions start at <strong>{{ $firstLesson.Date.UTC | time.Format "3pm MST" }}</strong>. <a href="https://time.unitarium.com/utc/1500">Check your timezone</a>.
     </p>
 
     <h2>Where?</h2>
     <p>Jess, Eda, and Carmen host the bootcamp together. You can follow along on our <a href="https://www.youtube.com/@badwebsiteclub">YouTube channel</a> and on <a href="https://www.twitch.tv/jesslynnrose">Jess' Twitch channel</a> and <a href="https://www.twitch.tv/hola_soy_milk_">Carmen's Twitch channel</a>.</p>
 
     <h2>Calendar?</h2>
-    <p><a href="{{ printf "calendars/%s-lessons.ics" $bootcampSlug | relURL }}">Download or subscribe to the full lesson calendar</a>. For Google Calendar, use the iCal feed with <a href="https://support.google.com/calendar/answer/37100?hl=en">these subscription instructions</a>.</p>
+    <p><a href="{{ printf "calendars/%s-lessons.ics" $bootcampSlug | relURL }}">Download or subscribe to the full session calendar</a>. For Google Calendar, use the iCal feed with <a href="https://support.google.com/calendar/answer/37100?hl=en">these subscription instructions</a>.</p>
   </section>
 {{ end }}
 
 <div class="lesson-listing">
   <section class="lesson-group">
     <div class="lesson-group-heading">
-      <h2>Upcoming Lessons</h2>
+      <h2>Upcoming Sessions</h2>
       <p>{{ len $upcomingLessons }} scheduled for {{ $sectionTitle }}</p>
     </div>
     <div class="lesson-list-items">
@@ -81,14 +81,14 @@
           {{ end }}
         </article>
       {{ else }}
-        <p class="lesson-list-empty">No upcoming lessons yet.</p>
+        <p class="lesson-list-empty">No upcoming sessions yet.</p>
       {{ end }}
     </div>
   </section>
 
   <section class="lesson-group">
     <div class="lesson-group-heading">
-      <h2>Past Lessons</h2>
+      <h2>Past Sessions</h2>
       <p>{{ len $pastLessons }} already covered</p>
     </div>
     <div class="lesson-list-items">
@@ -113,10 +113,10 @@
           {{ with .Params.unit }}
             <p>{{ delimit . ", " }}</p>
           {{ end }}
-          <a href="{{ .RelPermalink }}" class="fcc-lesson-link">Lesson page</a>
+          <a href="{{ .RelPermalink }}" class="fcc-lesson-link">Session page</a>
         </article>
       {{ else }}
-        <p class="lesson-list-empty">Past lessons will show up here once the bootcamp starts.</p>
+        <p class="lesson-list-empty">Past sessions will show up here once the bootcamp starts.</p>
       {{ end }}
     </div>
   </section>
