@@ -7,16 +7,12 @@
 {{ if ne .Params.youtube_id "" }}
   {{ partial "youtube.html" (dict "id" .Params.youtube_id) }}
 {{ else }}
-<div class="video-container">
-  <iframe src="https://www.youtube.com/embed/live_stream?channel=@BadWebsiteClub" allowfullscreen="" allow="
-      accelerometer;
-      autoplay;
-      clipboard-write;
-      encrypted-media;
-      gyroscope;
-      picture-in-picture;
-    " loading="lazy" title="YouTube video player"></iframe>
-</div>
+<section class="video-container video-fallback" aria-label="Livestream status">
+  <p class="video-fallback-eyebrow">Livestream status</p>
+  <p class="video-fallback-title">We are currently offline.</p>
+  <p class="video-fallback-copy">If the stream has started, you can watch it directly on YouTube. We add the recording to this page after class.</p>
+  <a class="fcc-lesson-link video-fallback-link" href="https://www.youtube.com/@badwebsiteclub/live">Open live stream on YouTube</a>
+</section>
 {{ end }}
 <div class="metadata-container">
 <p>{{ .Date | time.Format ":date_medium" }} {{ .Date.UTC | time.Format "3pm MST" }}

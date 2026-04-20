@@ -198,6 +198,69 @@ summary:hover {
   margin: 0;
 }
 
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 25px;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: #000;
+  border: 2px solid var(--bwc-black);
+  box-shadow: 4px 4px 0 0 var(--bwc-black);
+  margin: 1rem 0;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-container.video-fallback {
+  height: auto;
+  padding: 1.5rem;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.65rem;
+  color: #fff;
+  background: linear-gradient(140deg, #11131d, #2a3143 60%, #1d4f61);
+}
+
+.video-fallback-eyebrow,
+.video-fallback-title,
+.video-fallback-copy {
+  margin: 0;
+}
+
+.video-fallback-eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d0ddff;
+}
+
+.video-fallback-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.video-fallback-copy {
+  max-width: 52ch;
+  color: #e8ecfb;
+}
+
+.video-fallback-link {
+  width: fit-content;
+  margin: 0.25rem 0 0;
+}
+
 .logo {
   display: flex;
   flex-direction: column;
@@ -432,6 +495,15 @@ footer {
   .lesson-actions {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .video-container {
+    box-shadow: 2px 2px 0 0 var(--bwc-black);
+  }
+
+  .video-container.video-fallback {
+    min-height: 180px;
+    padding: 1rem;
   }
 }
 
