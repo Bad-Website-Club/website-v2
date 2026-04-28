@@ -77,7 +77,7 @@
         {{ $lessonTypes := .Params.lesson_type }}
         <article class="lesson-list-item">
           <div class="metadata-container">
-            <p>{{ .Date | time.Format ":date_medium" }} {{ .Date.UTC | time.Format "3pm MST" }}</p>
+            <p>{{ .Date | time.Format ":date_medium" }} {{ .Date.UTC | time.Format "3:04pm MST" }}</p>
             {{ with $lessonTypes }}
               <div class="lesson-list-types">
                 {{ range . }}
