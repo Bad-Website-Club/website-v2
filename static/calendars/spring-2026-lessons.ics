@@ -226,6 +226,20 @@ LOCATION:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-05-20/
 URL:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-05-20/
 END:VEVENT
 BEGIN:VEVENT
+UID:spring-2026-2026-05-20-guest-session@badwebsite.club
+DTSTAMP:20260326T110534Z
+DTSTART:20260520T193000Z
+DTEND:20260520T203000Z
+SUMMARY:Guest session with Sara Joy: Whimsica11y: bringing the joy and whi
+ msy to *everyone*
+DESCRIPTION:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-05-20
+ -guest-session/
+LOCATION:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-05-20-g
+ uest-session/
+URL:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-05-20-guest-
+ session/
+END:VEVENT
+BEGIN:VEVENT
 UID:spring-2026-2026-05-21@badwebsite.club
 DTSTAMP:20260326T110534Z
 DTSTART:20260521T150000Z

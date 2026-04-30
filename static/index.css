@@ -204,8 +204,9 @@ summary:hover {
   align-items: flex-start;
 }
 
-.guest-photo {
+.guest-bio .guest-photo {
   width: 160px;
+  max-width: 160px;
   border-radius: 8px;
   flex-shrink: 0;
 }
@@ -215,7 +216,7 @@ summary:hover {
     flex-direction: column;
   }
 
-  .guest-photo {
+  .guest-bio .guest-photo {
     width: 100%;
     max-width: 240px;
   }
