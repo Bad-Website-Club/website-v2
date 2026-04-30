@@ -43,6 +43,9 @@
 <a href="{{ printf "calendars/spring-2026/%s.ics" $lessonSlug | relURL }}" class="fcc-lesson-link">Download iCal File</a>
 {{ end }}
 </div>
+{{ with .Params.guest_photo }}
+<img src="{{ . }}" alt="{{ $.Params.guest_photo_alt }}" class="guest-photo">
+{{ end }}
 {{ .Content }}
 <div class="bottom-navigation">
 {{ with .PrevInSection }}

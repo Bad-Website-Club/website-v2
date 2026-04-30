@@ -198,6 +198,13 @@ summary:hover {
   margin: 0;
 }
 
+.guest-photo {
+  float: right;
+  width: 160px;
+  border-radius: 8px;
+  margin: 0 0 1rem 1.5rem;
+}
+
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
