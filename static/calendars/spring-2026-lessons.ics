@@ -103,6 +103,19 @@ LOCATION:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-05-06/
 URL:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-05-06/
 END:VEVENT
 BEGIN:VEVENT
+UID:spring-2026-2026-05-06-guest-session@badwebsite.club
+DTSTAMP:20260326T110534Z
+DTSTART:20260506T140000Z
+DTEND:20260506T150000Z
+SUMMARY:Guest session with Terence Eden: Wait - you can do *that* with SVG?
+DESCRIPTION:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-05-06
+ -guest-session/
+LOCATION:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-05-06-g
+ uest-session/
+URL:https://badwebsite.club/bootcamps/spring-2026/lessons/2026-05-06-guest-
+ session/
+END:VEVENT
+BEGIN:VEVENT
 UID:spring-2026-2026-05-07@badwebsite.club
 DTSTAMP:20260326T110534Z
 DTSTART:20260507T150000Z
