@@ -198,11 +198,27 @@ summary:hover {
   margin: 0;
 }
 
+.guest-bio {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
 .guest-photo {
-  float: right;
   width: 160px;
   border-radius: 8px;
-  margin: 0 0 1rem 1.5rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .guest-bio {
+    flex-direction: column;
+  }
+
+  .guest-photo {
+    width: 100%;
+    max-width: 240px;
+  }
 }
 
 .video-container {
