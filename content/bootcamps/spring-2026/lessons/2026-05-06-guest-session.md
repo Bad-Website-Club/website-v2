@@ -2,7 +2,7 @@
 date = '2026-05-06T13:50:00+00:00'
 etz_url = ''
 draft = false
-title = 'Guest Session with Terence Eden'
+title = 'Guest session: Wait - you can do *that* with SVG?'
 youtube_id = ''
 alternative_recording_urls = []
 calendar_ics_url = '/calendars/spring-2026-lessons.ics'
@@ -12,3 +12,13 @@ lesson_type = []
 instructors = ['Jess', 'Carmen', 'Eda']
 unit = ['Basic HTML']
 +++
+
+We're excited to welcome **Terence Eden** for a guest session on SVG!
+
+## About the session
+
+In this guest session, Terence will explore what's possible with SVG. You might be surprised by just how much you can do with it.
+
+## About Terence Eden
+
+Terence Eden is an open technology expert and innovation consultant. He was formerly the UK Government's representative to the W3C and was an editor of the HTML5 specification. He is a long-time advocate of open source and open standards in government. He speaks around the world on open standards, open source software, and open data. He also helped get four-and-a-half new emoji into Unicode. You can read his personal blog at https://shkspr.mobi/blog/
