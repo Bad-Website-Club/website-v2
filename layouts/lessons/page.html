@@ -1,4 +1,7 @@
 {{ define "main" }}
+
+{{ partial "copy-code.html" . }}
+
 <nav class="breadcrumb">
   <a href="{{ .CurrentSection.RelPermalink }}" class="crumb">{{ .CurrentSection.Title }}</a>
   <a href="{{ .RelPermalink }}" class="crumb current">{{ .Title }}</a>

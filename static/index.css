@@ -663,6 +663,25 @@ footer {
   /* GenericUnderline */ .chroma .gl { text-decoration:underline }
 }
 
+.wrapper-code-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.copy-code-btn {
+  position: absolute;
+  margin: 2rem .25rem;
+  align-self: end;
+  border: none;
+  z-index: 1;
+  background-color: transparent;
+  padding: .5rem;
+}
+
+.copy-code-btn:hover {
+  cursor: pointer;
+}
+
 @media (max-width: 640px) {
   .metadata-container {
     align-items: start;
