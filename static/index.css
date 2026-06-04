@@ -446,6 +446,9 @@ footer {
   margin-top: 4rem;
 }
 
+pre {
+  overflow-x: scroll;
+}
 /* Generated using: hugo gen chromastyles --style=catppuccin-latte */
 
 /* Background */ .bg { color:#4c4f69;background-color:#eff1f5; }
